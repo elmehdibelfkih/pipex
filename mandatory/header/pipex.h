@@ -6,7 +6,7 @@
 /*   By: ebelfkih <ebelfkih@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 05:00:23 by ebelfkih          #+#    #+#             */
-/*   Updated: 2023/03/12 06:06:17 by ebelfkih         ###   ########.fr       */
+/*   Updated: 2023/03/12 20:31:00 by ebelfkih         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ typedef struct s_vars
 	char	*input;
 	char	*output;
 	int		i;
+	int		trm;
 	int		fd_in;
 	int		fd_out;
 }				t_vars;

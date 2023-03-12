@@ -6,7 +6,7 @@
 /*   By: ebelfkih <ebelfkih@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/05 10:58:58 by ebelfkih          #+#    #+#             */
-/*   Updated: 2023/03/12 05:52:47 by ebelfkih         ###   ########.fr       */
+/*   Updated: 2023/03/12 20:48:16 by ebelfkih         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,4 +49,20 @@ char	*ft_strjoin(char *s1, char *s2)
 		s[i++] = s2[j];
 	s[i] = '\0';
 	return (s);
+}
+
+void	exit_message(int i, t_vars *vars)
+{
+	char	**message;
+
+	(void)vars;
+	message = malloc(9 * sizeof(char *));
+	message[0] = ft_strdup("invalid input !");
+	message[1] = ft_strdup("fork error !");
+	message[2] = ft_strdup("pipe error !!");
+	message[3] = ft_strdup("command not found !!");
+	message[3] = NULL;
+	write (vars->trm, message[i], strlen(message[i]));
+	ft_clear (message, 4);
+	exit(0);
 }

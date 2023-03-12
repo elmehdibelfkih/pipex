@@ -6,7 +6,7 @@
 /*   By: ebelfkih <ebelfkih@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 00:44:57 by ebelfkih          #+#    #+#             */
-/*   Updated: 2023/03/12 06:09:31 by ebelfkih         ###   ########.fr       */
+/*   Updated: 2023/03/12 20:48:31 by ebelfkih         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,8 @@ char	*return_file(t_vars *vars, int i)
 	if (i > vars->i - 1)
 		return (NULL);
 	cmds = ft_split((*(vars->cmds + i)), ' ');
+	if (access(cmds[0], X_OK) == 0)
+		return (cmds[0]);
 	while (*vars->path)
 	{
 		path = ft_strjoin(*vars->path, cmds[0]);
@@ -71,7 +73,7 @@ char	*return_file(t_vars *vars, int i)
 			free (path);
 		vars->path++;
 	}
-	return (NULL);
+	return (exit_message(3, vars), NULL);
 }
 
 int	my_proccesses(t_vars *vars, int i)
@@ -108,7 +110,7 @@ int	my_execve(t_vars *vars, int i, int j, int *fd)
 	char	*path;
 	char	**t;
 
-	if (j == 0)	
+	if (j == 0)
 		close(fd[1]);
 	else
 		close(fd[0]);
@@ -119,19 +121,4 @@ int	my_execve(t_vars *vars, int i, int j, int *fd)
 	if (execve(path, t, NULL) == -1)
 		exit(0);
 	return (1);
-}
-
-void	exit_message(int i, t_vars *vars)
-{
-	char	**message;
-
-	(void)vars;
-	message = malloc(9 * sizeof(char *));
-	message[0] = ft_strdup("invalid input !");
-	message[1] = ft_strdup("duplicate founded !");
-	message[2] = ft_strdup("sorted !!");
-	message[3] = NULL;
-	write (1, message[i], strlen(message[i]));
-	ft_clear (message, 3);
-	exit(0);
 }
