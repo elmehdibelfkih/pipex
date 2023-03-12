@@ -6,7 +6,7 @@
 /*   By: ebelfkih <ebelfkih@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 00:44:57 by ebelfkih          #+#    #+#             */
-/*   Updated: 2023/03/11 19:18:05 by ebelfkih         ###   ########.fr       */
+/*   Updated: 2023/03/12 03:50:09 by ebelfkih         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,8 @@ void    parsing_args(t_vars *vars, char **argv, int argc)
     vars->input = ft_strdup(argv[1]);
     vars->output = ft_strdup(argv[argc - 1]);
     i = 0;
-    while (argv[++i] && i < argc - 1)
-        vars->cmds[i - 2] = ft_strdup(argv[i]); 
+    while (argv[++i + 1] && i < argc - 2)
+        vars->cmds[i - 1] = ft_strdup(argv[i + 1]); 
     return ;
 }
 
@@ -58,7 +58,9 @@ char    *return_file(t_vars *vars, int i)
     char *path;
     char **cmds;
 
-    cmds = ft_split(*(vars->cmds + i), ' ');
+    if (i > vars->i - 1)
+        return (NULL);
+    cmds = ft_split((*(vars->cmds + i)), ' ');
     while (*vars->path)
     {
         path = ft_strjoin(*vars->path, cmds[0]);
@@ -66,42 +68,107 @@ char    *return_file(t_vars *vars, int i)
             return (path);
         else
             free (path);
-        (*vars->path)++;
+        vars->path++;
     }
     return (NULL) ;
 }
 
-void    new_proccess(t_vars *vars, int i)
+// void    new_proccess(t_vars *vars, int i)
+// {
+//     int id;
+//     char *path;
+//     char **t;
+//     int stdin1;
+//     int stdout1;
+//     int fd[2];
+//     pipe(fd);
+
+//     id = fork();
+//     if (id == 0)
+//     {
+//         wait(NULL);
+//         close(fd[0]);
+//         path = return_file(vars, i);
+//         t = ft_split(vars->cmds[i], ' ');
+//         dup2(fd[1], 1);
+//         if (execve(path, t, NULL) == -1)
+//             exit(0);
+//     }
+//     else
+//     {
+//         wait(NULL);
+//         // dup2(1, stdout1);
+//         close(fd[1]);
+//         path = return_file(vars, i + 1);
+//         t = ft_split(vars->cmds[i + 1], ' ');
+//         dup2(fd[0], stdin1);
+//         if (execve(path, t, NULL) == -1)
+//             exit(0);
+//     }
+// }
+
+
+void    my_proccesses(t_vars *vars, int i)
 {
-    int id;
+    int id1;
+    int id2;
     char *path;
     char **t;
-    // int stdin1;
+    int status;
+    // int stdin;
+    // int stdout;
     int fd[2];
     pipe(fd);
 
-    id = fork();
-    if (id == 0)
+    id1 = fork();
+    if (id1 == 0)
     {
-        wait(NULL);
         close(fd[0]);
+        close(vars->fd_out);
         path = return_file(vars, i);
         t = ft_split(vars->cmds[i], ' ');
         dup2(fd[1], 1);
+        close(fd[1]);
+        close(vars->fd_in);
         if (execve(path, t, NULL) == -1)
             exit(0);
+        
     }
-    else
+    id2 = fork();
+    if (id2 == 0)
     {
-        wait(NULL);
-        // dup2(1, stdout1);
+        waitpid(id1, &status, 0);
         close(fd[1]);
+        close(vars->fd_in);
+        dup2(fd[0], 0);
+        dup2(vars->fd_out, 1);
+        close(fd[0]);
+        close(vars->fd_out);
         path = return_file(vars, i + 1);
         t = ft_split(vars->cmds[i + 1], ' ');
-        // dup2(fd[0], stdin1);
         if (execve(path, t, NULL) == -1)
             exit(0);
     }
+    close(vars->fd_in);
+    close(vars->fd_out);
+    close(fd[0]);
+    close(fd[1]);
+    wait(NULL);
+    wait(NULL);
+    return;
+}
+
+void my_execve(t_vars *vars, int i, int j)
+{
+    char *path;
+    char **t;
+    
+    close(vars->fd_out);
+    close(vars->fd_in);
+    path = return_file(vars, i);
+    t = ft_split(vars->cmds[i], ' ');
+    if (execve(path, t, NULL) == -1)
+        exit(0);
 }
 
 void	exit_message(int i, t_vars *vars)
@@ -117,24 +184,4 @@ void	exit_message(int i, t_vars *vars)
 	write(1, message[i], strlen(message[i]));
 	ft_clear(message, 3);
 	exit(0);
-}
-
-void    proccesses()
-{
-    int id1;
-    int id2;
-
-    id1 = fork();
-    if (id1 == 0)
-    {
-        id2 = fork();
-        if (id2 != 0)
-        {
-            
-        }
-    }
-    else
-    {
-        
-    }
 }

@@ -6,7 +6,7 @@
 #    By: ebelfkih <ebelfkih@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/11 02:43:12 by ebelfkih          #+#    #+#              #
-#    Updated: 2023/03/11 02:48:33 by ebelfkih         ###   ########.fr        #
+#    Updated: 2023/03/11 22:05:56 by ebelfkih         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,7 +34,7 @@ $(NAME) : $(ONAME)
 $(ONAME) : $(OBJ)
 	$(AR) $(ONAME) $^
 
-%.o : %.c header.h
+%.o : %.c header/pipex.h
 	$(CC) -o $@ -c $<
 
 clean :
