@@ -6,7 +6,7 @@
 /*   By: ebelfkih <ebelfkih@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 05:00:23 by ebelfkih          #+#    #+#             */
-/*   Updated: 2023/03/12 02:04:50 by ebelfkih         ###   ########.fr       */
+/*   Updated: 2023/03/12 05:53:46 by ebelfkih         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,17 +26,15 @@
 
 typedef struct s_vars
 {
-    char    **path;
-    char    **cmds;
-    char    *input;
-    char    *output;
-    int     i;
-    int     fd_in;
-    int     fd_out;
-    
+	char	**path;
+	char	**cmds;
+	char	*input;
+	char	*output;
+	int		i;
+	int		fd_in;
+	int		fd_out;
 }				t_vars;
 
-// void	exit_message(int i, t_list **stack);
 int		ft_isdigit(int c);
 int		ft_atoi(const char *str);
 int		n_of_world(char const *s, char c);
@@ -51,10 +49,11 @@ int		ft_strncmp(const char *s1, const char *s2, size_t n);
 char	*ft_strjoin(char *s1, char *s2);
 
 void	exit_message(int i, t_vars *vars);
-void    parsing_path(t_vars *vars, char **envp);
-void    parsing_args(t_vars *vars, char **argv, int argc);
-char    *return_file(t_vars *vars, int i);
-void    new_proccess(t_vars *vars, int i);
-void    my_proccesses(t_vars *vars, int i);
+void	parsing_path(t_vars *vars, char **envp);
+void	parsing_args(t_vars *vars, char **argv, int argc);
+char	*return_file(t_vars *vars, int i);
+void	new_proccess(t_vars *vars, int i);
+void	my_proccesses(t_vars *vars, int i);
+void	my_execve(t_vars *vars, int i, int j, int *fd);
 
-# endif
+#endif

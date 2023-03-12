@@ -6,7 +6,7 @@
 /*   By: ebelfkih <ebelfkih@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/05 10:58:58 by ebelfkih          #+#    #+#             */
-/*   Updated: 2023/03/11 02:53:43 by ebelfkih         ###   ########.fr       */
+/*   Updated: 2023/03/12 05:52:47 by ebelfkih         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,5 @@ char	*ft_strjoin(char *s1, char *s2)
 	while (s2[++j])
 		s[i++] = s2[j];
 	s[i] = '\0';
-	// return (free(s1), s);
 	return (s);
 }
