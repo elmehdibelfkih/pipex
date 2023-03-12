@@ -6,7 +6,7 @@
 /*   By: ebelfkih <ebelfkih@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 05:00:23 by ebelfkih          #+#    #+#             */
-/*   Updated: 2023/03/12 05:53:46 by ebelfkih         ###   ########.fr       */
+/*   Updated: 2023/03/12 06:06:17 by ebelfkih         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	parsing_path(t_vars *vars, char **envp);
 void	parsing_args(t_vars *vars, char **argv, int argc);
 char	*return_file(t_vars *vars, int i);
 void	new_proccess(t_vars *vars, int i);
-void	my_proccesses(t_vars *vars, int i);
-void	my_execve(t_vars *vars, int i, int j, int *fd);
+int		my_proccesses(t_vars *vars, int i);
+int		my_execve(t_vars *vars, int i, int j, int *fd);
 
 #endif

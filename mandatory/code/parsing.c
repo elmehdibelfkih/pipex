@@ -6,7 +6,7 @@
 /*   By: ebelfkih <ebelfkih@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 00:44:57 by ebelfkih          #+#    #+#             */
-/*   Updated: 2023/03/12 05:51:18 by ebelfkih         ###   ########.fr       */
+/*   Updated: 2023/03/12 06:09:31 by ebelfkih         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ char	*return_file(t_vars *vars, int i)
 	return (NULL);
 }
 
-void	my_proccesses(t_vars *vars, int i)
+int	my_proccesses(t_vars *vars, int i)
 {
 	int	id1;
 	int	id2;
@@ -84,37 +84,41 @@ void	my_proccesses(t_vars *vars, int i)
 	if (pipe(fd) == -1)
 		exit_message(2, vars);
 	id1 = fork();
+	if (id1 == -1)
+		return (-1);
 	if (id1 == 0)
-	{
-		close(fd[0]);
 		my_execve(vars, i, 1, fd);
-	}
 	id2 = fork();
+	if (id2 == -1)
+		return (-1);
 	if (id2 == 0)
 	{
 		waitpid(id1, &status, 0);
-		close(fd[1]);
 		my_execve(vars, i + 1, 0, fd);
 	}
 	close(fd[0]);
 	close(fd[1]);
 	wait(NULL);
 	wait(NULL);
-	return ;
+	return (1);
 }
 
-void	my_execve(t_vars *vars, int i, int j, int *fd)
+int	my_execve(t_vars *vars, int i, int j, int *fd)
 {
 	char	*path;
 	char	**t;
 
+	if (j == 0)	
+		close(fd[1]);
+	else
+		close(fd[0]);
 	dup2(fd[j], j);
 	close(fd[j]);
 	path = return_file(vars, i);
 	t = ft_split(vars->cmds[i], ' ');
 	if (execve(path, t, NULL) == -1)
 		exit(0);
-	return ;
+	return (1);
 }
 
 void	exit_message(int i, t_vars *vars)
