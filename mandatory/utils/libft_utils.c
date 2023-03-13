@@ -6,7 +6,7 @@
 /*   By: ebelfkih <ebelfkih@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 08:02:00 by ebelfkih          #+#    #+#             */
-/*   Updated: 2023/03/13 05:57:40 by ebelfkih         ###   ########.fr       */
+/*   Updated: 2023/03/13 09:16:04 by ebelfkih         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,12 +90,8 @@ char	*ft_strjoin(char *s1, char *s2)
 
 	i = -1;
 	j = -1;
-	if (!s1 && !s2)
+	if (!s1 || !s2)
 		return (NULL);
-	if (!s1)
-		return (free(s1), s2);
-	if (!s2)
-		return (free(s2), s1);
 	s = malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
 	if (!s)
 		return (NULL);

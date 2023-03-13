@@ -6,7 +6,7 @@
 /*   By: ebelfkih <ebelfkih@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/05 10:58:58 by ebelfkih          #+#    #+#             */
-/*   Updated: 2023/03/13 06:46:38 by ebelfkih         ###   ########.fr       */
+/*   Updated: 2023/03/13 09:16:34 by ebelfkih         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	exit_message(int i, t_vars *vars)
 	message[1] = ft_strdup("fork error !");
 	message[2] = ft_strdup("pipe error !!");
 	message[3] = ft_strdup(" command not found !!");
-	message[4] = ft_strdup(" execve error !!");
+	message[4] = ft_strdup("execve error !!");
 	message[5] = ft_strdup("There is no input file !!");
 	message[6] = NULL;
 	write (vars->trm, message[i], strlen(message[i]));
@@ -30,8 +30,8 @@ void	exit_message(int i, t_vars *vars)
 	{
 		ft_clear (vars->path, 10000);
 		ft_clear (vars->cmds, 10000);
-		free(vars->input);
-		free(vars->output);
+		// free(vars->input);
+		// free(vars->output);
 	}
 	ft_clear (message, 6);
 	exit(1);
