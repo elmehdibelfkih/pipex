@@ -6,7 +6,7 @@
 /*   By: ebelfkih <ebelfkih@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 08:04:34 by ebelfkih          #+#    #+#             */
-/*   Updated: 2023/03/07 05:09:13 by ebelfkih         ###   ########.fr       */
+/*   Updated: 2023/03/13 05:57:19 by ebelfkih         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,9 +78,16 @@ void	*ft_calloc(size_t count, size_t size)
 	return (s);
 }
 
-int	ft_isdigit(int c)
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-	if (c <= '9' && c >= '0')
-		return (c);
-	return (0);
+	size_t	i;
+
+	i = 0;
+	while (i < n && (s1[i] || s2[i]))
+	{
+		if (s1[i] != s2[i])
+			return (0);
+		i++;
+	}
+	return (1);
 }

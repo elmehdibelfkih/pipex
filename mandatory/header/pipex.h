@@ -6,7 +6,7 @@
 /*   By: ebelfkih <ebelfkih@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 05:00:23 by ebelfkih          #+#    #+#             */
-/*   Updated: 2023/03/12 20:31:00 by ebelfkih         ###   ########.fr       */
+/*   Updated: 2023/03/13 05:59:43 by ebelfkih         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,5 +56,6 @@ char	*return_file(t_vars *vars, int i);
 void	new_proccess(t_vars *vars, int i);
 int		my_proccesses(t_vars *vars, int i);
 int		my_execve(t_vars *vars, int i, int j, int *fd);
+void	my_fopen(t_vars *vars);
 
 #endif

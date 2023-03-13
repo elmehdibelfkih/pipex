@@ -6,7 +6,7 @@
 /*   By: ebelfkih <ebelfkih@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 00:44:57 by ebelfkih          #+#    #+#             */
-/*   Updated: 2023/03/13 00:46:35 by ebelfkih         ###   ########.fr       */
+/*   Updated: 2023/03/13 06:27:41 by ebelfkih         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,32 +67,43 @@ char	*return_file(t_vars *vars, int i)
 	{
 		path = ft_strjoin(*vars->path, cmds[0]);
 		if (access(path, X_OK) == 0)
+		{
+			ft_clear(cmds, 1000);
 			return (path);
+		}
 		else
 			free (path);
 		vars->path++;
 	}
-	return (exit_message(3, vars), NULL);
+	write(vars->trm, cmds[0], ft_strlen(cmds[0]));
+	ft_clear(cmds, 1000);
+	exit_message(3, vars);
+	return (NULL);
 }
 
 int	my_proccesses(t_vars *vars, int i)
 {
 	int	id1;
 	int	id2;
+	int	s;
 	int	fd[2];
 
 	if (pipe(fd) == -1)
 		exit_message(2, vars);
 	id1 = fork();
 	if (id1 == -1)
-		return (-1);
+		exit_message(1, vars);
 	if (id1 == 0)
 		my_execve(vars, i, 1, fd);
-	id2 = fork();
+	if (id1 != 0)
+		id2 = fork();
 	if (id2 == -1)
-		return (-1);
+		exit_message(1, vars);
 	if (id2 == 0)
+	{	
+		waitpid(id1, &s, 0);
 		my_execve(vars, i + 1, 0, fd);
+	}
 	close(fd[0]);
 	close(fd[1]);
 	wait(NULL);
@@ -113,10 +124,7 @@ int	my_execve(t_vars *vars, int i, int j, int *fd)
 	close(fd[j]);
 	path = return_file(vars, i);
 	t = ft_split(vars->cmds[i], ' ');
-		// while (1)
-		// {
-		// }
 	if (execve(path, t, NULL) == -1)
-		exit(0);
+		exit_message(4, vars);
 	return (1);
 }

@@ -6,34 +6,11 @@
 /*   By: ebelfkih <ebelfkih@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 08:02:00 by ebelfkih          #+#    #+#             */
-/*   Updated: 2023/03/07 06:50:41 by ebelfkih         ###   ########.fr       */
+/*   Updated: 2023/03/13 05:57:40 by ebelfkih         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/pipex.h"
-
-int	ft_atoi(const char *str)
-{
-	size_t	i;
-	int		si;
-	int		re;
-
-	i = 0;
-	re = 0;
-	si = 1;
-	while (str[i] == ' ' || (9 <= str[i] && str[i] <= 13))
-		i++;
-	if (str[i] == '-' )
-	{		
-		si = -1;
-		i++;
-	}
-	else if (str[i] == '+')
-		i++;
-	while (ft_isdigit(str[i]) && str[i])
-		re = re * 10 + (str[i++] - 48);
-	return (re * si);
-}
 
 int	n_of_world(char const *s, char c)
 {
@@ -103,4 +80,29 @@ char	**ft_split(char const *s, char c)
 	if (plen(spl, s, c) < 0)
 		return (NULL);
 	return (spl);
+}
+
+char	*ft_strjoin(char *s1, char *s2)
+{
+	int		i;
+	int		j;
+	char	*s;
+
+	i = -1;
+	j = -1;
+	if (!s1 && !s2)
+		return (NULL);
+	if (!s1)
+		return (free(s1), s2);
+	if (!s2)
+		return (free(s2), s1);
+	s = malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
+	if (!s)
+		return (NULL);
+	while (s1[++i])
+		s[i] = s1[i];
+	while (s2[++j])
+		s[i++] = s2[j];
+	s[i] = '\0';
+	return (s);
 }
