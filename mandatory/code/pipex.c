@@ -6,7 +6,7 @@
 /*   By: ebelfkih <ebelfkih@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 02:41:00 by ebelfkih          #+#    #+#             */
-/*   Updated: 2023/03/12 20:48:45 by ebelfkih         ###   ########.fr       */
+/*   Updated: 2023/03/13 00:47:37 by ebelfkih         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ int	main(int argc, char *argv[], char *envp[])
 {
 	t_vars	vars;
 	int		i;
-
 	if (argc <= 3)
 		exit_message (0, &vars);
 	i = 0;
@@ -32,6 +31,6 @@ int	main(int argc, char *argv[], char *envp[])
 	close(vars.fd_in);
 	close(vars.fd_out);
 	if (my_proccesses(&vars, i) == -1)
-		exit_message(1, &vars);
+		exit_message(1, &vars);		
 	return (0);
 }

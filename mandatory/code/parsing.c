@@ -6,7 +6,7 @@
 /*   By: ebelfkih <ebelfkih@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 00:44:57 by ebelfkih          #+#    #+#             */
-/*   Updated: 2023/03/12 20:48:31 by ebelfkih         ###   ########.fr       */
+/*   Updated: 2023/03/13 00:46:35 by ebelfkih         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,6 @@ char	*return_file(t_vars *vars, int i)
 {
 	char	*path;
 	char	**cmds;
-
 	if (i > vars->i - 1)
 		return (NULL);
 	cmds = ft_split((*(vars->cmds + i)), ' ');
@@ -80,7 +79,6 @@ int	my_proccesses(t_vars *vars, int i)
 {
 	int	id1;
 	int	id2;
-	int	status;
 	int	fd[2];
 
 	if (pipe(fd) == -1)
@@ -94,10 +92,7 @@ int	my_proccesses(t_vars *vars, int i)
 	if (id2 == -1)
 		return (-1);
 	if (id2 == 0)
-	{
-		waitpid(id1, &status, 0);
 		my_execve(vars, i + 1, 0, fd);
-	}
 	close(fd[0]);
 	close(fd[1]);
 	wait(NULL);
@@ -118,6 +113,9 @@ int	my_execve(t_vars *vars, int i, int j, int *fd)
 	close(fd[j]);
 	path = return_file(vars, i);
 	t = ft_split(vars->cmds[i], ' ');
+		// while (1)
+		// {
+		// }
 	if (execve(path, t, NULL) == -1)
 		exit(0);
 	return (1);
