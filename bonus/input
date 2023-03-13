@@ -1,0 +1,32 @@
+void    my_proccesses(t_vars *vars, int i, int *fd)
+{
+    int id1;
+    int id2;
+    int status;
+
+    id1 = fork();
+    if (id1 == 0)
+    {
+        //proccess 1
+        close(vars->fd_out);
+        close(fd[0]);
+        my_execve(vars, i, 1, fd);
+    }
+    id2 = fork();
+    if (id2 == 0)
+    {
+        //proccess 2
+        waitpid(id1, &status, 0);
+        close(vars->fd_in);
+        close(fd[1]);
+        close(vars->fd_out);
+        my_execve(vars, i + 1, 0, fd);
+    }
+    wait(NULL);
+    wait(NULL);
+    close(fd[0]);
+    close(fd[1]);
+    close(vars->fd_in);
+    close(vars->fd_out);
+    return;
+}
