@@ -6,7 +6,7 @@
 /*   By: ebelfkih <ebelfkih@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 00:44:57 by ebelfkih          #+#    #+#             */
-/*   Updated: 2023/03/14 06:02:32 by ebelfkih         ###   ########.fr       */
+/*   Updated: 2023/03/14 09:12:38 by ebelfkih         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,4 +78,47 @@ char	*return_file(t_vars *vars, int i)
 	ft_clear(cmds, 1000);
 	exit_message(3, vars);
 	return (NULL);
+}
+
+void	my_fopen(t_vars *vars)
+{
+	vars->fd_in = open(vars->input, O_RDWR, 0777);
+	vars->fd_out = open(vars->output, O_RDWR | O_CREAT | O_TRUNC, 0777);
+	if (vars->fd_out == -1)
+		exit_message (6, vars);
+	if (vars->fd_in == -1)
+		exit_message (5, vars);
+	dup2(vars->fd_in, 0);
+	dup2(vars->fd_out, 1);
+	close(vars->fd_in);
+	close(vars->fd_out);
+	return ;
+}
+
+void	exit_message(int i, t_vars *vars)
+{
+	char	**message;
+
+	(void)vars;
+	message = malloc(9 * sizeof(char *));
+	message[0] = ft_strdup("invalid input !");
+	message[1] = ft_strdup("fork error !");
+	message[2] = ft_strdup("pipe error !!");
+	message[3] = ft_strdup(" command not found !!");
+	message[4] = ft_strdup("execve error !!");
+	message[5] = ft_strdup("There is no input file !!");
+	message[6] = ft_strdup("out file error");
+	message[7] = ft_strdup("tmpfile error");
+	message[8] = ft_strdup("dup2 error");
+	message[9] = NULL;
+	write (vars->trm, message[i], strlen(message[i]));
+	if (i != 0)
+	{
+		ft_clear (vars->path, 10000);
+		ft_clear (vars->cmds, 10000);
+		free(vars->input);
+		free(vars->output);
+	}
+	ft_clear (message, 9);
+	exit(1);
 }

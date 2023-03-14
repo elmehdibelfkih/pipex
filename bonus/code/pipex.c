@@ -6,7 +6,7 @@
 /*   By: ebelfkih <ebelfkih@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 02:41:00 by ebelfkih          #+#    #+#             */
-/*   Updated: 2023/03/14 06:47:47 by ebelfkih         ###   ########.fr       */
+/*   Updated: 2023/03/14 09:09:15 by ebelfkih         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	main(int argc, char *argv[], char *envp[])
 {
 	t_vars	vars;
-	int i;
+	int		i;
 
 	if (argc < 5)
 		exit_message (0, &vars);
@@ -24,13 +24,13 @@ int	main(int argc, char *argv[], char *envp[])
 	parsing_path(&vars, envp);
 	parsing_args(&vars, argv, argc);
 	my_fopen(&vars);
-	while(i < vars.i)
+	while (i < vars.i)
 	{
 		if (my_proccesses(&vars, i) == -1)
 			exit_message(1, &vars);
-		i+=2;
+		i += 2;
 	}
-	unpair_arg(&vars);
+	proccess3(&vars);
 	return (ft_clear (vars.cmds, 10000), ft_clear (vars.path, 10000),
 		free(vars.output), free(vars.input), 0);
 }

@@ -6,7 +6,7 @@
 /*   By: ebelfkih <ebelfkih@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 05:00:23 by ebelfkih          #+#    #+#             */
-/*   Updated: 2023/03/14 06:43:32 by ebelfkih         ###   ########.fr       */
+/*   Updated: 2023/03/14 09:08:50 by ebelfkih         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ typedef struct s_vars
 	int		fd_in;
 	int		fd_out;
 	int		fd_tmp;
+	int		id1;
+	int		id2;
 }				t_vars;
 
 int		ft_isdigit(int c);
@@ -50,7 +52,6 @@ size_t	ft_strlen(const char *s);
 void	*ft_calloc(size_t count, size_t size);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 char	*ft_strjoin(char *s1, char *s2);
-
 void	exit_message(int i, t_vars *vars);
 void	parsing_path(t_vars *vars, char **envp);
 void	parsing_args(t_vars *vars, char **argv, int argc);
@@ -59,6 +60,8 @@ void	new_proccess(t_vars *vars, int i);
 int		my_proccesses(t_vars *vars, int i);
 int		my_execve(t_vars *vars, int i, int j, int *fd);
 void	my_fopen(t_vars *vars);
-void	unpair_arg(t_vars *vars);
+void	proccess1(t_vars *vars, int i, int *fd);
+void	proccess2(t_vars *vars, int i, int *fd);
+void	proccess3(t_vars *vars);
 
 #endif
