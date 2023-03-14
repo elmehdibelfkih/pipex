@@ -1,4 +1,3 @@
-
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
@@ -7,7 +6,7 @@
 /*   By: ebelfkih <ebelfkih@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 05:00:23 by ebelfkih          #+#    #+#             */
-/*   Updated: 2023/03/13 05:17:40 by ebelfkih         ###   ########.fr       */
+/*   Updated: 2023/03/13 05:59:43 by ebelfkih         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +34,6 @@ typedef struct s_vars
 	int		trm;
 	int		fd_in;
 	int		fd_out;
-	int		tmp;
 }				t_vars;
 
 int		ft_isdigit(int c);
@@ -58,8 +56,6 @@ char	*return_file(t_vars *vars, int i);
 void	new_proccess(t_vars *vars, int i);
 int		my_proccesses(t_vars *vars, int i);
 int		my_execve(t_vars *vars, int i, int j, int *fd);
-
-unsigned int	nbr_counter(int j);
-char	*ft_itoa(int n);
+void	my_fopen(t_vars *vars);
 
 #endif

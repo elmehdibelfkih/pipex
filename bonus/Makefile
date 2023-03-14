@@ -6,7 +6,7 @@
 #    By: ebelfkih <ebelfkih@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/11 02:43:12 by ebelfkih          #+#    #+#              #
-#    Updated: 2023/03/11 22:05:56 by ebelfkih         ###   ########.fr        #
+#    Updated: 2023/03/13 06:00:21 by ebelfkih         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ MAIN = code/pipex.c
 CC = cc -Wall -Werror -Wextra
 RM = rm -f
 AR = ar rc
-FILES = code/parsing.c utils/libft_utils.c utils/libft_utils2.c utils/libft_utils3.c
+FILES = code/parsing.c code/pipex_utils.c utils/libft_utils.c utils/libft_utils2.c
 OBJ = $(FILES:.c=.o)
 
 RED = \033[0;31m
