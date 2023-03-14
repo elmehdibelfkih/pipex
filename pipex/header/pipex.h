@@ -6,7 +6,7 @@
 /*   By: ebelfkih <ebelfkih@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 05:00:23 by ebelfkih          #+#    #+#             */
-/*   Updated: 2023/03/13 05:59:43 by ebelfkih         ###   ########.fr       */
+/*   Updated: 2023/03/14 06:43:32 by ebelfkih         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,11 @@ typedef struct s_vars
 	char	*input;
 	char	*output;
 	int		i;
+	int		status;
 	int		trm;
 	int		fd_in;
 	int		fd_out;
+	int		fd_tmp;
 }				t_vars;
 
 int		ft_isdigit(int c);
@@ -57,5 +59,6 @@ void	new_proccess(t_vars *vars, int i);
 int		my_proccesses(t_vars *vars, int i);
 int		my_execve(t_vars *vars, int i, int j, int *fd);
 void	my_fopen(t_vars *vars);
+void	unpair_arg(t_vars *vars);
 
 #endif
