@@ -6,7 +6,7 @@
 /*   By: ebelfkih <ebelfkih@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 00:44:57 by ebelfkih          #+#    #+#             */
-/*   Updated: 2023/03/13 09:05:49 by ebelfkih         ###   ########.fr       */
+/*   Updated: 2023/03/14 02:07:35 by ebelfkih         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,23 +58,21 @@ char	*return_file(t_vars *vars, int i)
 {
 	char	*path;
 	char	**cmds;
+	char	**tmp;
 
+	tmp = vars->path;
 	if (i > vars->i - 1)
 		return (NULL);
 	cmds = ft_split((*(vars->cmds + i)), ' ');
 	if (access(cmds[0], X_OK) == 0)
 		return (cmds[0]);
-	while (*vars->path)
+	while (*tmp)
 	{
-		path = ft_strjoin(*vars->path, cmds[0]);
+		path = ft_strjoin(*tmp, cmds[0]);
 		if (access(path, X_OK) == 0)
-		{
-			ft_clear(cmds, 1000);
-			return (path);
-		}
-		else
-			free (path);
-		vars->path++;
+			return (ft_clear(cmds, 1000), path);
+		free (path);
+		tmp++;
 	}
 	write(vars->trm, cmds[0], ft_strlen(cmds[0]));
 	ft_clear(cmds, 1000);

@@ -6,7 +6,7 @@
 /*   By: ebelfkih <ebelfkih@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 02:41:00 by ebelfkih          #+#    #+#             */
-/*   Updated: 2023/03/13 09:07:04 by ebelfkih         ###   ########.fr       */
+/*   Updated: 2023/03/14 02:33:56 by ebelfkih         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,9 @@ int	main(int argc, char *argv[], char *envp[])
 	my_fopen(&vars);
 	if (my_proccesses(&vars, 0) == -1)
 		exit_message(1, &vars);
+	ft_clear (vars.path, 10000);
+	ft_clear (vars.cmds, 10000);
+	free(vars.input);
+	free(vars.output);
 	return (0);
 }
