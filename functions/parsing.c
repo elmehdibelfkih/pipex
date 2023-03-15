@@ -6,7 +6,7 @@
 /*   By: ebelfkih <ebelfkih@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 00:44:57 by ebelfkih          #+#    #+#             */
-/*   Updated: 2023/03/15 04:38:33 by ebelfkih         ###   ########.fr       */
+/*   Updated: 2023/03/15 04:48:58 by ebelfkih         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,8 +99,7 @@ void	exit_message(int i, t_vars *vars)
 {
 	char	**message;
 
-	(void)vars;
-	message = malloc(9 * sizeof(char *));
+	message = malloc(10 * sizeof(char *));
 	message[0] = ft_strdup("invalid input !");
 	message[1] = ft_strdup("fork error !");
 	message[2] = ft_strdup("pipe error !!");
@@ -119,6 +118,6 @@ void	exit_message(int i, t_vars *vars)
 		free(vars->input);
 		free(vars->output);
 	}
-	// ft_clear (message, 8);
+	ft_clear (message, 100);
 	exit(1);
 }
