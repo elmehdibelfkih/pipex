@@ -6,13 +6,13 @@
 /*   By: ebelfkih <ebelfkih@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/05 10:58:58 by ebelfkih          #+#    #+#             */
-/*   Updated: 2023/03/14 09:12:21 by ebelfkih         ###   ########.fr       */
+/*   Updated: 2023/03/15 03:52:37 by ebelfkih         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/pipex.h"
 
-int	my_proccesses(t_vars *vars, int i)
+int	bonus_proccesses(t_vars *vars, int i)
 {
 	int	fd[2];
 	int	status;

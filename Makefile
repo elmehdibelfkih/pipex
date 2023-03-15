@@ -6,17 +6,19 @@
 #    By: ebelfkih <ebelfkih@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/11 02:43:12 by ebelfkih          #+#    #+#              #
-#    Updated: 2023/03/13 06:00:21 by ebelfkih         ###   ########.fr        #
+#    Updated: 2023/03/15 04:12:07 by ebelfkih         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = pipex
+BONUS_NAME = pipex_bonus
 ONAME = pipex.a 
-MAIN = code/pipex.c
+MAIN = main/pipex.c
+BONUS_MAIN = main/pipex_bonus.c
 CC = cc -Wall -Werror -Wextra
 RM = rm -f
 AR = ar rc
-FILES = code/parsing.c code/pipex_utils.c utils/libft_utils.c utils/libft_utils2.c
+FILES = functions/parsing.c functions/pipex_utils.c functions/pipex_utils2.c utils/libft_utils.c utils/libft_utils2.c
 OBJ = $(FILES:.c=.o)
 
 RED = \033[0;31m
@@ -31,6 +33,9 @@ all : $(ONAME) $(NAME)
 $(NAME) : $(ONAME)
 	$(CC) $(MAIN) $(ONAME) -o $(NAME)
 
+$(BONUS_NAME) : $(ONAME)
+	$(CC) $(BONUS_MAIN) $(ONAME) -o $(BONUS_NAME)
+
 $(ONAME) : $(OBJ)
 	$(AR) $(ONAME) $^
 
@@ -40,10 +45,13 @@ $(ONAME) : $(OBJ)
 clean :
 	$(RM) $(OBJ) $(ONAME)
 	echo "${RED} archieve files are removed"
-
+	
+bonus : $(ONAME) $(BONUS_NAME)
+	@echo "${GREEN} archieve files are created"
+	@echo "${PURPLE} executable file is created"
 
 fclean: clean
-	$(RM) $(NAME) $(ONAME)
+	$(RM) $(NAME) $(ONAME) $(BONUS_NAME)
 	echo "${RED} executable file removed"
 
 re: fclean all

@@ -6,7 +6,7 @@
 /*   By: ebelfkih <ebelfkih@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 00:44:57 by ebelfkih          #+#    #+#             */
-/*   Updated: 2023/03/14 09:12:38 by ebelfkih         ###   ########.fr       */
+/*   Updated: 2023/03/15 04:38:33 by ebelfkih         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,6 +119,6 @@ void	exit_message(int i, t_vars *vars)
 		free(vars->input);
 		free(vars->output);
 	}
-	ft_clear (message, 9);
+	// ft_clear (message, 8);
 	exit(1);
 }
