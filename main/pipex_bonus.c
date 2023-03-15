@@ -6,7 +6,7 @@
 /*   By: ebelfkih <ebelfkih@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 02:41:00 by ebelfkih          #+#    #+#             */
-/*   Updated: 2023/03/15 03:53:00 by ebelfkih         ###   ########.fr       */
+/*   Updated: 2023/03/15 06:53:45 by ebelfkih         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ int	main(int argc, char *argv[], char *envp[])
 	if (argc < 5)
 		exit_message (0, &vars);
 	i = 1;
-	vars.trm = dup(1);
 	parsing_path(&vars, envp);
 	parsing_args(&vars, argv, argc);
 	my_fopen(&vars);

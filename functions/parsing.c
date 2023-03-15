@@ -6,7 +6,7 @@
 /*   By: ebelfkih <ebelfkih@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 00:44:57 by ebelfkih          #+#    #+#             */
-/*   Updated: 2023/03/15 04:48:58 by ebelfkih         ###   ########.fr       */
+/*   Updated: 2023/03/15 06:52:36 by ebelfkih         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ char	*return_file(t_vars *vars, int i)
 		free (path);
 		tmp++;
 	}
-	write(vars->trm, cmds[0], ft_strlen(cmds[0]));
+	write(2, cmds[0], ft_strlen(cmds[0]));
 	ft_clear(cmds, 1000);
 	exit_message(3, vars);
 	return (NULL);
@@ -100,17 +100,17 @@ void	exit_message(int i, t_vars *vars)
 	char	**message;
 
 	message = malloc(10 * sizeof(char *));
-	message[0] = ft_strdup("invalid input !");
-	message[1] = ft_strdup("fork error !");
+	message[0] = ft_strdup("invalid input !\n");
+	message[1] = ft_strdup("fork error !\n");
 	message[2] = ft_strdup("pipe error !!");
-	message[3] = ft_strdup(" command not found !!");
-	message[4] = ft_strdup("execve error !!");
-	message[5] = ft_strdup("There is no input file !!");
-	message[6] = ft_strdup("out file error");
-	message[7] = ft_strdup("tmpfile error");
-	message[8] = ft_strdup("dup2 error");
+	message[3] = ft_strdup(" command not found !!\n");
+	message[4] = ft_strdup("execve error !!\n");
+	message[5] = ft_strdup("There is no input file !!\n");
+	message[6] = ft_strdup("out file error\n");
+	message[7] = ft_strdup("tmpfile error\n");
+	message[8] = ft_strdup("dup2 error\n");
 	message[9] = NULL;
-	write (vars->trm, message[i], strlen(message[i]));
+	write (2, message[i], strlen(message[i]));
 	if (i != 0)
 	{
 		ft_clear (vars->path, 10000);

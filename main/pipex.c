@@ -6,7 +6,7 @@
 /*   By: ebelfkih <ebelfkih@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 02:41:00 by ebelfkih          #+#    #+#             */
-/*   Updated: 2023/03/15 03:45:00 by ebelfkih         ###   ########.fr       */
+/*   Updated: 2023/03/15 06:53:35 by ebelfkih         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ int	main(int argc, char *argv[], char *envp[])
 {
 	t_vars	vars;
 
-	vars.trm = dup(1);
 	if (argc != 5)
 		exit_message (0, &vars);
 	parsing_path(&vars, envp);
