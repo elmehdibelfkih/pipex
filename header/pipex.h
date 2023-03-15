@@ -6,12 +6,16 @@
 /*   By: ebelfkih <ebelfkih@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 05:00:23 by ebelfkih          #+#    #+#             */
-/*   Updated: 2023/03/15 07:07:46 by ebelfkih         ###   ########.fr       */
+/*   Updated: 2023/03/15 11:35:07 by ebelfkih         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PIPEX_H
 # define PIPEX_H
+
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 10
+# endif
 
 # include <unistd.h>
 # include <stdlib.h>
@@ -23,6 +27,7 @@
 # include <errno.h>
 # include <string.h>
 # include <limits.h>
+# include <stddef.h>
 
 typedef struct s_vars
 {
@@ -37,6 +42,7 @@ typedef struct s_vars
 	int		fd_tmp;
 	int		id1;
 	int		id2;
+	int		here_doc_status;
 }				t_vars;
 
 int		ft_isdigit(int c);
@@ -63,5 +69,11 @@ void	my_fopen(t_vars *vars);
 void	proccess1(t_vars *vars, int i, int *fd);
 void	proccess2(t_vars *vars, int i, int *fd);
 void	proccess3(t_vars *vars);
+char	*join(char **buffer, char **s);
+int		ft_strchr(const char *s, int c);
+char	*return_line(char **buffer, char **s1);
+void	buffer_plen(char **buffer, char **s1, int *r, int fd);
+char	*get_next_line(int fd);
+void	here_doc(t_vars *vars, char **argv, int argc);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: ebelfkih <ebelfkih@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 02:41:00 by ebelfkih          #+#    #+#             */
-/*   Updated: 2023/03/15 06:53:45 by ebelfkih         ###   ########.fr       */
+/*   Updated: 2023/03/15 11:35:37 by ebelfkih         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	main(int argc, char *argv[], char *envp[])
 		exit_message (0, &vars);
 	i = 1;
 	parsing_path(&vars, envp);
-	parsing_args(&vars, argv, argc);
+	here_doc(&vars, argv, argc);
 	my_fopen(&vars);
 	while (i < vars.i)
 	{
@@ -30,6 +30,8 @@ int	main(int argc, char *argv[], char *envp[])
 		i += 2;
 	}
 	proccess3(&vars);
+	if (vars.here_doc_status == 1)
+		unlink("here_doc");
 	return (ft_clear (vars.cmds, 10000), ft_clear (vars.path, 10000),
 		free(vars.output), free(vars.input), 0);
 }

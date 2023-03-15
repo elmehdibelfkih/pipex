@@ -6,7 +6,7 @@
 #    By: ebelfkih <ebelfkih@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/11 02:43:12 by ebelfkih          #+#    #+#              #
-#    Updated: 2023/03/15 07:23:44 by ebelfkih         ###   ########.fr        #
+#    Updated: 2023/03/15 10:18:24 by ebelfkih         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ CC = @cc -Wall -Werror -Wextra
 RM = @rm -f
 AR = @ar rc
 IN_OUT = @touch input output
-FILES = functions/parsing.c functions/pipex_utils.c functions/pipex_utils2.c utils/libft_utils.c utils/libft_utils2.c
+FILES = functions/parsing.c functions/pipex_utils.c functions/pipex_utils2.c utils/libft_utils.c utils/libft_utils2.c utils/get_next_line.c
 OBJ = $(FILES:.c=.o)
 
 RED = \033[0;31m

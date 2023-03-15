@@ -6,7 +6,7 @@
 /*   By: ebelfkih <ebelfkih@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 03:55:24 by ebelfkih          #+#    #+#             */
-/*   Updated: 2023/03/15 06:57:33 by ebelfkih         ###   ########.fr       */
+/*   Updated: 2023/03/15 11:34:55 by ebelfkih         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,4 +38,31 @@ int	my_proccesses(t_vars *vars, int i)
 		wait(NULL);
 	}
 	return (1);
+}
+
+void	here_doc(t_vars *vars, char **argv, int argc)
+{
+	char	*s;
+	int		fd;
+
+	s = NULL;
+	if (ft_strncmp(argv[1], "here_doc", 9) == 1)
+	{
+		fd = open("here_doc", O_RDWR | O_CREAT | O_TRUNC, 0777);
+		s = get_next_line(0);
+		while (!ft_strncmp(s, argv[2], (ft_strlen(s) - 1)))
+		{
+			write(fd, s, ft_strlen(s));
+			s = get_next_line(0);
+		}
+		parsing_args(vars, argv + 1, argc - 1);
+		vars->input = strdup("here_doc");
+		vars->here_doc_status = 1;
+	}
+	else
+	{
+		parsing_args(vars, argv, argc);
+		vars->here_doc_status = 0;
+	}
+	return ;
 }
