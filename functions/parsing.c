@@ -6,7 +6,7 @@
 /*   By: ebelfkih <ebelfkih@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 00:44:57 by ebelfkih          #+#    #+#             */
-/*   Updated: 2023/03/15 09:57:12 by ebelfkih         ###   ########.fr       */
+/*   Updated: 2023/03/16 15:32:14 by ebelfkih         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,10 @@ char	*return_file(t_vars *vars, int i)
 void	my_fopen(t_vars *vars)
 {
 	vars->fd_in = open(vars->input, O_RDWR, 0777);
-	vars->fd_out = open(vars->output, O_RDWR | O_CREAT | O_TRUNC, 0777);
+	if (vars->here_doc_status == 0)
+		vars->fd_out = open(vars->output, O_RDWR | O_CREAT | O_TRUNC, 0777);
+	else
+		vars->fd_out = open(vars->output, O_RDWR | O_CREAT | O_APPEND, 0777);
 	if (vars->fd_out == -1)
 		exit_message (6, vars);
 	if (vars->fd_in == -1)

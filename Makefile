@@ -6,7 +6,7 @@
 #    By: ebelfkih <ebelfkih@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/11 02:43:12 by ebelfkih          #+#    #+#              #
-#    Updated: 2023/03/15 10:18:24 by ebelfkih         ###   ########.fr        #
+#    Updated: 2023/03/16 15:56:39 by ebelfkih         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ BONUS_NAME = pipex_bonus
 ONAME = pipex.a 
 MAIN = main/pipex.c
 BONUS_MAIN = main/pipex_bonus.c
-CC = @cc -Wall -Werror -Wextra
+CC = cc -Wall -Werror -Wextra
 RM = @rm -f
 AR = @ar rc
 IN_OUT = @touch input output
@@ -43,9 +43,11 @@ $(BONUS_NAME) : $(ONAME)
 	$(CC) $(BONUS_MAIN) $(ONAME) -o $(BONUS_NAME)
 
 $(ONAME) : $(OBJ)
+	@echo "${GREEN} start archiving"
 	$(AR) $(ONAME) $^
 
 mandatory : $(NAME)
+	@echo "${GREEN} start compiling"
 	@echo "${GREEN} archive files are created"
 	@echo "${PURPLE} executable files are created"
 
@@ -54,6 +56,7 @@ clean :
 	@echo "${RED} archive files are removed"
 	
 bonus : $(ONAME) $(BONUS_NAME)
+	@echo "${GREEN} start compiling"
 	@echo "${GREEN} archive files are created"
 	@echo "${PURPLE} bonus executable file is created"
 
