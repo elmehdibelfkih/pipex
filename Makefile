@@ -6,7 +6,7 @@
 #    By: ebelfkih <ebelfkih@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/11 02:43:12 by ebelfkih          #+#    #+#              #
-#    Updated: 2023/03/16 15:56:39 by ebelfkih         ###   ########.fr        #
+#    Updated: 2023/03/16 17:03:59 by ebelfkih         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,7 +43,7 @@ $(BONUS_NAME) : $(ONAME)
 	$(CC) $(BONUS_MAIN) $(ONAME) -o $(BONUS_NAME)
 
 $(ONAME) : $(OBJ)
-	@echo "${GREEN} start archiving"
+	@echo "${GREEN} wait ..."
 	$(AR) $(ONAME) $^
 
 mandatory : $(NAME)
