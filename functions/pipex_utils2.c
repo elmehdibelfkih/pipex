@@ -6,7 +6,7 @@
 /*   By: ebelfkih <ebelfkih@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 03:55:24 by ebelfkih          #+#    #+#             */
-/*   Updated: 2023/03/16 16:52:10 by ebelfkih         ###   ########.fr       */
+/*   Updated: 2023/03/16 23:19:19 by ebelfkih         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,10 @@ void	here_doc(t_vars *vars, char **argv, int argc)
 	char	*s;
 	char	*c;
 	int		fd;
-	
-	c = ft_strjoin(argv[2], "\n");
+
 	if (ft_strncmp(argv[1], "here_doc", 9))
 	{
+		c = ft_strjoin(argv[2], "\n");
 		if (argc <= 5)
 			exit_message (0, vars);
 		fd = open("here_doc", O_RDWR | O_CREAT | O_TRUNC, 0777);

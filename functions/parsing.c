@@ -6,7 +6,7 @@
 /*   By: ebelfkih <ebelfkih@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 00:44:57 by ebelfkih          #+#    #+#             */
-/*   Updated: 2023/03/16 15:32:14 by ebelfkih         ###   ########.fr       */
+/*   Updated: 2023/03/16 23:17:33 by ebelfkih         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,8 +91,8 @@ void	my_fopen(t_vars *vars)
 		exit_message (6, vars);
 	if (vars->fd_in == -1)
 		exit_message (5, vars);
-	dup2(vars->fd_in, 0);
-	dup2(vars->fd_out, 1);
+	if (dup2(vars->fd_in, 0) == -1 || dup2(vars->fd_out, 1) == -1)
+		return ;
 	close(vars->fd_in);
 	close(vars->fd_out);
 	return ;
