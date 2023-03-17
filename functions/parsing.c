@@ -6,7 +6,7 @@
 /*   By: ebelfkih <ebelfkih@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 00:44:57 by ebelfkih          #+#    #+#             */
-/*   Updated: 2023/03/16 23:17:33 by ebelfkih         ###   ########.fr       */
+/*   Updated: 2023/03/17 01:28:02 by ebelfkih         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ void	exit_message(int i, t_vars *vars)
 {
 	char	**message;
 
-	message = malloc(10 * sizeof(char *));
+	message = malloc(11 * sizeof(char *));
 	message[0] = ft_strdup("invalid input !\n");
 	message[1] = ft_strdup("fork error !\n");
 	message[2] = ft_strdup("pipe error !!");
@@ -112,9 +112,10 @@ void	exit_message(int i, t_vars *vars)
 	message[6] = ft_strdup("out file error\n");
 	message[7] = ft_strdup("tmpfile error\n");
 	message[8] = ft_strdup("dup2 error\n");
-	message[9] = NULL;
+	message[9] = ft_strdup("env error\n");
+	message[10] = NULL;
 	write (2, message[i], strlen(message[i]));
-	if (i != 0)
+	if (i != 0 && i != 9)
 	{
 		ft_clear (vars->path, 10000);
 		ft_clear (vars->cmds, 10000);

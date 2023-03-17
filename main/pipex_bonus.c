@@ -6,7 +6,7 @@
 /*   By: ebelfkih <ebelfkih@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 02:41:00 by ebelfkih          #+#    #+#             */
-/*   Updated: 2023/03/15 11:35:37 by ebelfkih         ###   ########.fr       */
+/*   Updated: 2023/03/17 01:31:58 by ebelfkih         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ int	main(int argc, char *argv[], char *envp[])
 
 	if (argc < 5)
 		exit_message (0, &vars);
+	if (!*envp)
+		exit_message (9, &vars);
 	i = 1;
 	parsing_path(&vars, envp);
 	here_doc(&vars, argv, argc);
