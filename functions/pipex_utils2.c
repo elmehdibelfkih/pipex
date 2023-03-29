@@ -53,7 +53,7 @@ void	here_doc(t_vars *vars, char **argv, int argc)
 			exit_message (0, vars);
 		fd = open("here_doc", O_RDWR | O_CREAT | O_TRUNC, 0777);
 		s = get_next_line(0);
-		while (!ft_strncmp(s, c, ft_strlen(c)))
+		while (!ft_strncmp(s, c, ft_strlen(c)) && s)
 		{
 			write(fd, s, ft_strlen(s));
 			free(s);
